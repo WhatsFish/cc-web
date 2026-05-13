@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# Next.js build output
+web/.next/
+web/out/
+web/next-env.d.ts
+
+# runtime data (TOTP state, recovery codes, session cookies, banlist)
+data/
+
+# secrets
+.env
+.env.*
+!.env.example
+
+# editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# logs
+*.log

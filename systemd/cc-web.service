@@ -1,0 +1,21 @@
+[Unit]
+Description=cc-web — web console for Claude Code, Copilot CLI, and tmux sessions
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/liharr/src/cc-web/web
+Environment=NODE_ENV=production
+# Explicit PATH — systemd user services do NOT inherit the shell PATH.
+# nvm node first; /usr/bin for tmux, gh; /bin as last resort.
+Environment=PATH=/home/liharr/.nvm/versions/node/v24.15.0/bin:/usr/local/bin:/usr/bin:/bin
+# Optional — Phase 1 will create this file (TOTP secret, cookie key, umami ids).
+EnvironmentFile=-/home/liharr/.config/cc-web.env
+ExecStart=/home/liharr/.nvm/versions/node/v24.15.0/bin/npm start
+Restart=on-failure
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
